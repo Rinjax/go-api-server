@@ -1,0 +1,22 @@
+{
+    "api": {
+        "addr": ":80",
+        "time_out_sec": 10
+    },
+    "hashing": {
+        "hasher": "argon2i",
+        "argon2": {
+            "time_cost": 1,
+            "memory_cost": 65536,
+            "parallelism": 4,
+            "hash_length": 32
+        }
+    },
+    "store": {
+        "storer": "faker"
+    },
+    "log": {
+        "logger": "default",
+        "level": "debug"
+    }
+}
