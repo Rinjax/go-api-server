@@ -10,7 +10,7 @@ type Hash interface {
 func NewHash(cfg *config.Config) Hash {
 	switch cfg.Hashing.Hasher {
 	case "argon2i":
-			return NewArgon2i(cfg.Hashing.Argon2)
+			return NewArgon2i(&cfg.Hashing.Argon2)
 	default:
 		panic("hasher not supported")
 	}

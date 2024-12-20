@@ -40,7 +40,7 @@ func bootstrap() (*api.ApiServer, logger.Logger) {
 	hash := hash.NewHash(cfg)
 
 	// build api server
-	endp := endpoints.NewEndpoints(db, hash, log)
+	endp := endpoints.NewEndpoints(cfg, db, hash, log)
 	apiSvr := api.NewServer(ctx, cfg, endp, log)
 
 	return apiSvr, log

@@ -2,15 +2,27 @@ package config
 
 import (
 	"errors"
+	"fmt"
 	"os"
+
 	"github.com/spf13/viper"
 )
 
 type Config struct {
 	Api     ApiServerConfig `json:"api"`
+	App AppConfig `json:"app"`
+	Auth AuthConfig `json:"auth"`
 	Hashing HashingConfig  `json:"hashing"`
 	Store StoreConfig `json:"store"`
-	Log LogConfig `log`
+	Log LogConfig `json:"log"`
+}
+
+type AppConfig struct {
+	Name string
+}
+
+type AuthConfig struct {
+	SigningKey string `mapstructure:"signing_key"`
 }
 
 type ApiServerConfig struct {
@@ -19,14 +31,14 @@ type ApiServerConfig struct {
 
 type HashingConfig struct {
 	Hasher string         `json:"hasher"`
-	Argon2 *Argon2iConfig `json:"argon2"`
+	Argon2 Argon2iConfig `json:"argon2"`
 }
 
 type Argon2iConfig struct {
-	TimeCost    uint32 `json:"time_cost"`
-	MemoryCost  uint32 `json:"memory_cost"`
+	TimeCost    uint32 `mapstructure:"time_cost"`
+	MemoryCost  uint32 `mapstructure:"memory_cost"`
 	Parallelism uint8  `json:"parallelism"`
-	HashLength  uint32 `json:"hash_length"`
+	HashLength  uint32 `mapstructure:"hash_length"`
 }
 
 type StoreConfig struct {
@@ -65,6 +77,8 @@ func ParseConfig(v *viper.Viper) (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Printf("%+v\n", cfg)
 
 	return cfg, nil
 }

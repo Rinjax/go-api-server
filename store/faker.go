@@ -1,8 +1,9 @@
 package store
 
+import "errors"
+
 type Faker struct {
 	Users []NewUser
-
 }
 
 func NewFaker() *Faker {
@@ -11,5 +12,5 @@ func NewFaker() *Faker {
 
 func (f *Faker) AddUserAccount(u *NewUser) error {
 	f.Users = append(f.Users, *u)
-	return nil
+	return errors.New("db gone...")
 }

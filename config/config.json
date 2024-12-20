@@ -3,10 +3,16 @@
         "addr": ":80",
         "time_out_sec": 10
     },
+    "app": {
+        "name": "Jax"
+    },
+    "auth": {
+        "signing_key": "mysuperseckey"
+    },
     "hashing": {
         "hasher": "argon2i",
         "argon2": {
-            "time_cost": 1,
+            "time_cost": 4,
             "memory_cost": 65536,
             "parallelism": 4,
             "hash_length": 32
